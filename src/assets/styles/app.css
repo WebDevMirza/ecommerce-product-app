@@ -31,8 +31,22 @@ body {
   font-family: var(--ff-primary);
   font-size: var(--fs-fontsize);
   font-weight: var(--fw-400);
+  color: var(--DarkGrayishBlue);
 }
 
 /* ==============================
 Layout
 ============================== */
+
+.wrapper {
+  max-width: 375px;
+  width: 90%;
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    max-width: 1200px;
+    width: 85%;
+  }
+}

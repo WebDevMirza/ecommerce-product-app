@@ -1,0 +1,267 @@
+.nav-desktop,
+.nav-mobile {
+  display: none;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  --gap-between-items: 1.5rem;
+
+  padding-block: 1rem;
+  position: relative;
+}
+
+.logo {
+  margin-left: 1.75rem;
+}
+
+.mobile-toggle {
+  position: absolute;
+  appearance: none;
+  top: 35px;
+  left: 0;
+  width: 16px;
+  height: 15px;
+  background: url(../images/icon-menu.svg) no-repeat center;
+  transition: all 0.25s ease-in-out;
+  z-index: 999;
+}
+
+.mobile-toggle:checked {
+  background: url(../images/icon-close.svg) no-repeat center;
+  transition: all 0.25s ease-in-out;
+}
+
+.nav-action {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  gap: var(--gap-between-items, 1.5rem);
+}
+
+.cart-icon:hover {
+  filter: brightness(0%);
+}
+
+.nav-profile img {
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-profile img:hover {
+  border: 2px solid var(--Orange);
+}
+
+/* styling on javascript demand */
+.nav-cart {
+  position: relative;
+  cursor: pointer;
+}
+
+/* for cart item amount */
+.cart-order {
+  position: absolute;
+  padding: 0 7px;
+  border-radius: 15px;
+  top: -10px;
+  right: -13px;
+  background-color: var(--Orange);
+  color: var(--White);
+  font-size: 0.875rem;
+  z-index: 99;
+}
+
+/* for nav menu */
+.nav-in {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* left: -110px; */
+  color: var(--Black);
+  z-index: 998;
+  animation: slidein 1s;
+  /* animation: slideout 0.5s; */
+}
+
+.nav-out {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -110px;
+  color: var(--Black);
+  z-index: 998;
+  animation: slideout 0.5s;
+}
+
+.nav-mobile ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 6rem;
+}
+
+.nav-mobile a {
+  color: inherit;
+  font-weight: 700;
+}
+
+/* for nav menu bg */
+
+.nav-bg::after {
+  position: absolute;
+  content: "";
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--Black);
+  opacity: 0.75;
+  z-index: 99;
+  animation: fadein 2s;
+}
+
+.nav-off::after {
+  position: absolute;
+  content: "";
+  height: 100vh;
+  width: 0;
+  top: 0;
+  left: 0;
+  right: 0%;
+  background-color: var(--Black);
+  opacity: 0.75;
+  z-index: 99;
+  animation: fadeout 2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.75;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 0.75;
+    width: 100%;
+  }
+
+  5% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 0;
+    width: 0;
+  }
+}
+
+.nav-bg-white::before {
+  position: absolute;
+  content: "";
+  width: 60%;
+  /* width: 0; */
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: var(--White);
+  z-index: 100;
+  animation: slidein 1s;
+  /* animation: slideout 1s; */
+}
+
+.nav-bg-off::before {
+  position: absolute;
+  content: "";
+  /* width: 60%; */
+  width: 0;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: var(--White);
+  z-index: 100;
+  /* animation: slidein 1s; */
+  animation: slideout 1s;
+}
+
+@keyframes slidein {
+  from {
+    width: 0%;
+    left: -110px;
+  }
+  to {
+    width: 60%;
+    left: 0;
+  }
+}
+
+@keyframes slideout {
+  from {
+    width: 60%;
+    left: 0;
+  }
+  to {
+    width: 0%;
+    left: -110px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-mobile,
+  .mobile-toggle {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: block;
+  }
+
+  .header {
+    padding-block: 1.25rem;
+    position: relative;
+  }
+
+  .header::after {
+    position: absolute;
+    content: "";
+    background-color: var(--GrayishBlue);
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    opacity: 0.5;
+  }
+
+  .nav-desktop ul {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-between-items, 1.5rem);
+  }
+
+  .nav-desktop ul li a {
+    color: inherit;
+    position: relative;
+  }
+
+  .nav-desktop ul li a:hover {
+    color: var(--VeryDarkBlue);
+  }
+
+  .nav-desktop ul li a:hover::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: var(--Orange);
+    bottom: -2.125rem;
+    left: 0;
+  }
+}
