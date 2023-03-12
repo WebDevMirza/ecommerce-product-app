@@ -44,9 +44,34 @@ Layout
   margin-inline: auto;
 }
 
+.product {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 2rem;
+
+  /* border: 1px solid red; */
+}
+
+.product > * {
+  /* border: 1px solid green; */
+}
+
 @media (min-width: 1024px) {
-  .wrapper {
+  .wrapper,
+  .wrapper-d {
     max-width: 1200px;
     width: 85%;
+    margin-inline: auto;
   }
+
+  .product {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Spacing */
+.product {
+  margin-top: 2rem;
 }
