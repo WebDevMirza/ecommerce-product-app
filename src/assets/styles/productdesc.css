@@ -116,6 +116,7 @@
   background-color: var(--Orange);
   transition: all 0.5s ease-in-out;
   position: relative;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 .btn-cart::before {

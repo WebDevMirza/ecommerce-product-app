@@ -2,10 +2,12 @@ import "../assets/styles/header.css";
 import Logo from "../assets/images/logo.svg";
 import Cart from "../assets/images/icon-cart.svg";
 import Profile from "../assets/images/image-avatar.png";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import CartContext from "../context/CartContext";
 
 const Header = () => {
   const [navVisibility, setNavVisibility] = useState(false);
+  const { unit } = useContext(CartContext);
   const navHandle = useRef(null);
 
   const setMenu = () => {
@@ -62,7 +64,7 @@ const Header = () => {
 
           <div className="nav-action">
             <div className="nav-cart">
-              <div className="cart-order">3</div>
+              <div className="cart-order">{unit}</div>
               <img className="cart-icon" src={Cart} alt="card" />
             </div>
             <div className="nav-profile">

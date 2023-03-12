@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../assets/styles/productdesc.css";
+import CartContext from "../context/CartContext";
 
 const ProductDesc = () => {
   const [count, setCount] = useState(0);
+  const { setCart } = useContext(CartContext);
 
   const decrement = () => {
     setCount((prev) => {
@@ -16,6 +18,12 @@ const ProductDesc = () => {
   const increment = () => {
     setCount((prev) => {
       return prev + 1;
+    });
+  };
+
+  const addCart = () => {
+    setCart((prev) => {
+      return prev + count;
     });
   };
 
@@ -43,9 +51,9 @@ const ProductDesc = () => {
             <button className="count">{count}</button>
             <button className="increment" onClick={increment}> + </button>
           </div>
-
+          {/* prettier-ignore */}
           <div className="atc">
-            <button className="btn-cart">Add to Cart</button>
+            <button className="btn-cart" onClick={addCart}>Add to Cart</button>
           </div>
         </div>
       </div>
