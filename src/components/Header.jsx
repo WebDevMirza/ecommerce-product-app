@@ -2,41 +2,44 @@ import "../assets/styles/header.css";
 import Logo from "../assets/images/logo.svg";
 import Cart from "../assets/images/icon-cart.svg";
 import Profile from "../assets/images/image-avatar.png";
-import { useState, useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 
 const Header = () => {
   const [navVisibility, setNavVisibility] = useState(false);
-  const navinout = useRef(null);
+  const navHandle = useRef(null);
 
-  const setMenu = (e) => {
-    const getbody = document.getElementsByTagName("body")[0];
-    const getOverlay = document.getElementById("overlay");
-
-    if (e.target.checked) {
-      setNavVisibility(true);
-      navinout.current.classList.add("nav-in");
-      navinout.current.classList.remove("nav-out");
-
-      getbody.classList.add("nav-bg-white");
-      getbody.classList.remove("nav-bg-off");
-      getOverlay.classList.add("nav-bg");
-      getOverlay.classList.remove("nav-off");
-    } else {
-      setNavVisibility(false);
-      navinout.current.classList.add("nav-out");
-      navinout.current.classList.remove("nav-in");
-
-      getbody.classList.remove("nav-bg-white");
-      getbody.classList.add("nav-bg-off");
-      getOverlay.classList.add("nav-off");
+  const setMenu = () => {
+    navHandle.current.classList.add("nav-bg-in");
+    navHandle.current.classList.remove("nav-bg-out");
+    setNavVisibility(!navVisibility);
+    if (navVisibility) {
+      navHandle.current.classList.remove("nav-bg-in");
+      navHandle.current.classList.add("nav-bg-out");
     }
   };
 
+  navHandle.current?.addEventListener("click", (e) => {
+    if (e.srcElement.classList.contains("nav-mobile")) {
+      setMenu();
+    }
+  });
+
   return (
     <>
+      {/* prettier-ignore */}
+      <nav ref={navHandle} className="nav-mobile">
+        <ul className={navVisibility ? "nav-menu-open" : "nav-menu-close"}>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
       <div className="wrapper">
         <div className="header">
-          <input type="checkbox" className="mobile-toggle" onChange={setMenu} />
+          <input type="checkbox" checked={navVisibility ? true : false} className="mobile-toggle" onChange={setMenu} />
 
           <div className="logo">
             <a href="/" aria-label="sneakers">
@@ -54,17 +57,6 @@ const Header = () => {
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
                 </ul>
-            </nav>
-
-            {/* prettier-ignore */}
-            <nav ref={navinout} className="nav-mobile">
-              <ul>
-                <li><a href="#">Collections</a></li>
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
             </nav>
           </div>
 
