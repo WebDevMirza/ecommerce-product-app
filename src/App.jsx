@@ -16,7 +16,7 @@ function App() {
   const cartContains = {
     img: "",
     name: "",
-    price: 0,
+    price: 125.0,
     unit: cart,
     setCart: setCart,
   };

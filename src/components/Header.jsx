@@ -4,11 +4,14 @@ import Cart from "../assets/images/icon-cart.svg";
 import Profile from "../assets/images/image-avatar.png";
 import { useContext, useEffect, useRef, useState } from "react";
 import CartContext from "../context/CartContext";
+import CartContainer from "./CartContainer";
 
 const Header = () => {
   const [initvisible, setInitVisible] = useState(false);
   const [navVisibility, setNavVisibility] = useState(false);
+  const [cart, setCart] = useState(false);
   const { unit } = useContext(CartContext);
+
   useEffect(() => {
     if (!navVisibility) {
       document.getElementsByTagName("body")[0].style.overflow = "auto";
@@ -20,6 +23,10 @@ const Header = () => {
   const setMenu = () => {
     setNavVisibility(!navVisibility);
     setInitVisible(true);
+  };
+
+  const showCart = (e) => {
+    setCart(!cart);
   };
 
   return (
@@ -68,10 +75,15 @@ const Header = () => {
 
           <div className="nav-action">
             <div className="nav-cart">
-              <div style={unit == 0 ? { display: "none" } : { display: "block" }} className="cart-order">
+              <div
+                onClick={showCart}
+                style={unit == 0 ? { display: "none" } : { display: "block" }}
+                className="cart-order"
+              >
                 {unit}
               </div>
-              <img className="cart-icon" src={Cart} alt="card" />
+
+              <img onClick={showCart} className="cart-icon" src={Cart} alt="card" />
             </div>
             <div className="nav-profile">
               <img src={Profile} alt="profile" width={50} height={50} />
@@ -79,6 +91,8 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <div onClick={showCart} className={cart ? "cart-overlay" : "cart-overlay-none"}></div>
+      <CartContainer cart={cart} />
     </>
   );
 };
