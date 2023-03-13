@@ -2,35 +2,39 @@ import "../assets/styles/header.css";
 import Logo from "../assets/images/logo.svg";
 import Cart from "../assets/images/icon-cart.svg";
 import Profile from "../assets/images/image-avatar.png";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import CartContext from "../context/CartContext";
 
 const Header = () => {
+  const [initvisible, setInitVisible] = useState(false);
   const [navVisibility, setNavVisibility] = useState(false);
   const { unit } = useContext(CartContext);
-  const navHandle = useRef(null);
+  useEffect(() => {
+    if (!navVisibility) {
+      document.getElementsByTagName("body")[0].style.overflow = "auto";
+    } else {
+      document.getElementsByTagName("body")[0].style.overflow = "hidden";
+    }
+  }, [navVisibility]);
 
   const setMenu = () => {
-    navHandle.current.classList.add("nav-bg-in");
-    navHandle.current.classList.remove("nav-bg-out");
     setNavVisibility(!navVisibility);
-    if (navVisibility) {
-      navHandle.current.classList.remove("nav-bg-in");
-      navHandle.current.classList.add("nav-bg-out");
-    }
+    setInitVisible(true);
   };
-
-  navHandle.current?.addEventListener("click", (e) => {
-    if (e.srcElement.classList.contains("nav-mobile")) {
-      setMenu();
-    }
-  });
 
   return (
     <>
+      <div
+        style={initvisible ? { display: "block" } : { display: "none" }}
+        className={`overlay-${navVisibility ? "in" : "out"}`}
+        onClick={setMenu}
+      ></div>
+
       {/* prettier-ignore */}
-      <nav ref={navHandle} className="nav-mobile">
-        <ul className={navVisibility ? "nav-menu-open" : "nav-menu-close"}>
+      <nav 
+       style={initvisible ? { display: "block" } : { display: "none" }}
+       className={`nav-mobile ${navVisibility ? "nav-menu-open" : "nav-menu-close"}`}>
+        <ul>
           <li><a href="#">Collections</a></li>
           <li><a href="#">Men</a></li>
           <li><a href="#">Women</a></li>
@@ -64,7 +68,9 @@ const Header = () => {
 
           <div className="nav-action">
             <div className="nav-cart">
-              <div className="cart-order">{unit}</div>
+              <div style={unit == 0 ? { display: "none" } : { display: "block" }} className="cart-order">
+                {unit}
+              </div>
               <img className="cart-icon" src={Cart} alt="card" />
             </div>
             <div className="nav-profile">
