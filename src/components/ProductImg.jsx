@@ -5,12 +5,52 @@ import Img2 from "../assets/images/image-product-2.jpg";
 import Img3 from "../assets/images/image-product-3.jpg";
 import Img4 from "../assets/images/image-product-4.jpg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ProductImg = () => {
   const [prevslide, setprevSlide] = useState(0);
   const [nextvslide, setnextSlide] = useState(0);
   const [disabled, setDisable] = useState({ left: false, right: true });
+
+  useEffect(() => {
+    switch (nextvslide) {
+      case -300:
+        setDisable((prev) => {
+          return {
+            right: false,
+            left: true,
+          };
+        });
+        break;
+
+      case -200:
+        setDisable((prev) => {
+          return {
+            right: false,
+            left: false,
+          };
+        });
+        break;
+
+      case -100:
+        setDisable((prev) => {
+          return {
+            right: false,
+            left: false,
+          };
+        });
+        break;
+
+      default:
+        setDisable((prev) => {
+          return {
+            right: true,
+            left: false,
+          };
+        });
+        break;
+    }
+  }, [prevslide, nextvslide]);
 
   const slideinout = {
     "--init": `${prevslide}%`,
