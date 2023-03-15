@@ -10,14 +10,31 @@ import { useState } from "react";
 const ProductImg = () => {
   const [prevslide, setprevSlide] = useState(0);
   const [nextvslide, setnextSlide] = useState(0);
+  const [disabled, setDisable] = useState({ left: false, right: true });
+
+  const slideinout = {
+    "--init": `${prevslide}%`,
+    "--final": `${nextvslide}%`,
+  };
 
   const browseLeft = () => {
-    console.log("left");
+    if (nextvslide > -300) {
+      setnextSlide((prev) => {
+        setprevSlide(prev);
+        return prev - 100;
+      });
+    }
   };
 
   const browseRight = () => {
-    console.log("right");
+    if (nextvslide < 0) {
+      setnextSlide((prev) => {
+        setprevSlide(prev);
+        return prev + 100;
+      });
+    }
   };
+
   return (
     <>
       <div className="img-container">
@@ -26,26 +43,21 @@ const ProductImg = () => {
         </div>
         <div className="arrows">
           <div className="left-arrow">
-            <span className="l-arrow" onClick={browseLeft}></span>
+            <span className={`l-arrow ${disabled.left ? "disable" : ""}`} onClick={browseLeft}></span>
           </div>
           <div className="right-arrow">
-            <span className="r-arrow" onClick={browseRight}></span>
+            <span className={`r-arrow ${disabled.right ? "disable" : ""}`} onClick={browseRight}></span>
           </div>
         </div>
 
-        <div className="main-img">
-          <div className="img-1">
-            <img src={Img1} alt="img1" />
-          </div>
-          <div className="img-2">
-            <img src={Img2} alt="image2" />
-          </div>
-          <div className="img-3">
-            <img src={Img3} alt="image3" />
-          </div>
-          <div className="img-4">
-            <img src={Img4} alt="image4" />
-          </div>
+        <div style={slideinout} className="main-img">
+          <img src={Img1} alt="img1" />
+
+          <img src={Img2} alt="image2" />
+
+          <img src={Img3} alt="image3" />
+
+          <img src={Img4} alt="image4" />
         </div>
       </div>
     </>

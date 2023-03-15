@@ -51,23 +51,19 @@
   background-size: 9px;
 }
 
+.disable {
+  filter: invert(0.2) brightness(200%);
+}
+
 .main-img {
   position: absolute;
   top: 0;
-}
-/* 
-.img-1 {
-  --init: 0%;
-  --final: -40%;
-  transform: translateX(-40%);
-  animation: slide 0.5s ease-in-out;
-} */
 
-@keyframes slide {
-  from {
-    transform: translateX(var(--init));
-  }
-  to {
-    transform: translateX(var(--final));
-  }
+  display: flex;
+}
+
+.main-img img {
+  width: 100%;
+  transform: translateX(var(--final));
+  transition: all 0.5s ease-in-out;
 }
