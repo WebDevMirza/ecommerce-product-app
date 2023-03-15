@@ -1,0 +1,73 @@
+.img-container img {
+  aspect-ratio: 4/3.5;
+}
+
+.img-container {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.arrows {
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+}
+
+.arrows > * {
+  width: 30px;
+  height: 100%;
+  margin-inline: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left-arrow {
+  float: left;
+}
+
+.right-arrow {
+  float: right;
+}
+
+.l-arrow,
+.r-arrow {
+  position: absolute;
+  bottom: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transform: translateY(50%);
+}
+
+.l-arrow {
+  background: url(../images/icon-previous.svg) no-repeat center var(--White);
+  background-size: 9px;
+}
+
+.r-arrow {
+  background: url(../images/icon-next.svg) no-repeat center var(--White);
+  background-size: 9px;
+}
+
+.main-img {
+  position: absolute;
+  top: 0;
+}
+/* 
+.img-1 {
+  --init: 0%;
+  --final: -40%;
+  transform: translateX(-40%);
+  animation: slide 0.5s ease-in-out;
+} */
+
+@keyframes slide {
+  from {
+    transform: translateX(var(--init));
+  }
+  to {
+    transform: translateX(var(--final));
+  }
+}
