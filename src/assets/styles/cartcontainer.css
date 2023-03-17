@@ -61,6 +61,7 @@
   background: url(../images/icon-delete.svg) no-repeat center;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .cart-item-none {
