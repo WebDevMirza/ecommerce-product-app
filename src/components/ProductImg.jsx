@@ -88,6 +88,17 @@ const ProductImg = () => {
 
     active[0].classList.remove("active");
     e.target.classList.add("active");
+
+    // Showing the original bit photo on desktop
+    if (e.target.dataset.first) {
+      setnextSlide(0);
+    } else if (e.target.dataset.second) {
+      setnextSlide(-100);
+    } else if (e.target.dataset.third) {
+      setnextSlide(-200);
+    } else {
+      setnextSlide(-300);
+    }
   };
 
   return (
@@ -113,10 +124,10 @@ const ProductImg = () => {
           </div>
         </div>
         <div className="img-thumbnail">
-          <img onClick={getFocused} className="active" src={Thum1} alt="Thumbnail1" />
-          <img onClick={getFocused} src={Thum2} alt="Thumbnail2" />
-          <img onClick={getFocused} src={Thum3} alt="Thumbnail3" />
-          <img onClick={getFocused} src={Thum4} alt="Thumbnail4" />
+          <img data-first onClick={getFocused} className="active" src={Thum1} alt="Thumbnail1" />
+          <img data-second onClick={getFocused} src={Thum2} alt="Thumbnail2" />
+          <img data-third onClick={getFocused} src={Thum3} alt="Thumbnail3" />
+          <img data-fourth onClick={getFocused} src={Thum4} alt="Thumbnail4" />
         </div>
       </div>
     </>

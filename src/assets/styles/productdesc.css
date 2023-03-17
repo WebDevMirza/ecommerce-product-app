@@ -157,10 +157,12 @@
 
   .card-action {
     flex-direction: row;
+    gap: 1rem;
   }
 
   .amount {
     flex-grow: 1;
+    flex-basis: 150px;
   }
 
   .atc {
