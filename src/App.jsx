@@ -24,6 +24,9 @@ function App() {
   return (
     <>
       <CartContext.Provider value={cartContains}>
+        {/* when image will be clicked */}
+        <div data-desktopoverlay={false} id="img-overlay"></div>
+
         <header>
           <Header />
         </header>

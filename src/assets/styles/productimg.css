@@ -109,4 +109,41 @@
     outline: 3px solid var(--Orange);
     opacity: 0.8;
   }
+
+  .arrows {
+    display: none;
+  }
+
+  .main-img {
+    cursor: pointer;
+  }
+
+  /* image overlay */
+
+  [data-desktopoverlay="true"] {
+    cursor: pointer;
+    position: absolute;
+    background-color: var(--VeryDarkBlue);
+    opacity: 0.6;
+    inset: 0;
+    z-index: 999;
+  }
+
+  [data-desktopoverlaycontainer="true"] {
+    position: absolute;
+    max-width: 35%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  [data-desktopoverlaythumbnail="true"] {
+    position: absolute;
+    width: 350px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
 }

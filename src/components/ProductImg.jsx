@@ -16,6 +16,8 @@ const ProductImg = () => {
   const [prevslide, setprevSlide] = useState(0);
   const [nextvslide, setnextSlide] = useState(0);
   const [disabled, setDisable] = useState({ left: false, right: true });
+  const desktopOverlayContainer = useRef();
+  const desktopOverlayThumbnail = useRef();
 
   useEffect(() => {
     switch (nextvslide) {
@@ -101,10 +103,26 @@ const ProductImg = () => {
     }
   };
 
+  const zoominImg = () => {
+    desktopOverlayContainer.current.dataset.desktopoverlaycontainer = true;
+    desktopOverlayThumbnail.current.dataset.desktopoverlaythumbnail = true;
+    document.getElementById("img-overlay").dataset.desktopoverlay = true;
+  };
+
+  const zoomoutImg = () => {
+    desktopOverlayContainer.current.dataset.desktopoverlaycontainer = false;
+    desktopOverlayThumbnail.current.dataset.desktopoverlaythumbnail = false;
+    document.getElementById("img-overlay").dataset.desktopoverlay = false;
+  };
+
+  document.getElementById("img-overlay")?.addEventListener("click", () => {
+    zoomoutImg();
+  });
+
   return (
     <>
       <div className="product-img">
-        <div className="img-container">
+        <div ref={desktopOverlayContainer} data-desktopoverlaycontainer="false" className="img-container">
           <div className="img-sample">
             <img src={Img1} alt="img1" />
           </div>
@@ -116,14 +134,14 @@ const ProductImg = () => {
               <span className={`r-arrow ${disabled.right ? "disable" : ""}`} onClick={browseRight}></span>
             </div>
           </div>
-          <div style={slideinout} className="main-img">
+          <div onClick={zoominImg} style={slideinout} className="main-img">
             <img src={Img1} alt="img1" />
             <img src={Img2} alt="image2" />
             <img src={Img3} alt="image3" />
             <img src={Img4} alt="image4" />
           </div>
         </div>
-        <div className="img-thumbnail">
+        <div ref={desktopOverlayThumbnail} data-desktopoverlaythumbnail="false" className="img-thumbnail">
           <img data-first onClick={getFocused} className="active" src={Thum1} alt="Thumbnail1" />
           <img data-second onClick={getFocused} src={Thum2} alt="Thumbnail2" />
           <img data-third onClick={getFocused} src={Thum3} alt="Thumbnail3" />
