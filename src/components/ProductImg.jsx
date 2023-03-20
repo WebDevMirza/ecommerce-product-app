@@ -135,7 +135,7 @@ const ProductImg = () => {
             </div>
           </div>
           <div onClick={zoominImg} style={slideinout} className="main-img">
-            <img src={Img1} alt="img1" />
+            <img src={Img1} alt="image1" />
             <img src={Img2} alt="image2" />
             <img src={Img3} alt="image3" />
             <img src={Img4} alt="image4" />
@@ -153,3 +153,5 @@ const ProductImg = () => {
 };
 
 export default ProductImg;
+
+// add a cross and left right arrow
